@@ -5,13 +5,18 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noEmitOnError": true,
-    "target": "esnext",
+    "target": "es6",
     "declaration": true,
     "removeComments": false,
     "noImplicitAny": true,
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "pretty": true,
+    "lib": [
+      "es6",
+      "dom",
+      "esnext"
+    ],
     "typeRoots": [
       "types",
       "node_modules/@types"
