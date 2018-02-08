@@ -10,7 +10,7 @@ export class ElectronRPCLink extends ApolloLink {
     super();
 
     // we need to instanciate that to receive RPCs
-    new RpcIpcManager({}, 'graphql');
+    new RpcIpcManager({}, 'graphql', { ignoreMissingFunctions : true });
   }
 
   public request(operation: Operation) {
