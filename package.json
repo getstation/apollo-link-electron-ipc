@@ -1,6 +1,6 @@
 {
   "name": "apollo-link-electron-ipc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "test": "mocha --opts tests/mocha.opts tests/**/*-test.{ts,tsx} && npm run lint && npm run build",
     "lint": "eslint 'src/**/*.{ts,tsx}' 'tests/**/*.{ts,tsx}'",

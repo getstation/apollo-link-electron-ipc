@@ -18,7 +18,7 @@ export const createElectronRPCGraphQLRequestExecutor = ({ link }: { link: Apollo
       execute(link, request).subscribe({
         next: (res: ExecutionResult) => resolve({
           data: res.data,
-          errors: res.errors ? res.errors.map(e => e.message): []
+          errors: res.errors ? res.errors.map(e => e.message): undefined
         }),
         error: (error: Error) => reject(error)
       });
