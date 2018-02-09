@@ -8,6 +8,8 @@ import { ISerializedGraphQLRequest, ISerializedExecutionResult } from './types';
 
 export const createElectronRPCGraphQLRequestExecutor = ({ link }: { link: ApolloLink }) => {
   const library = {
+    // TODO: for real-time queries we might need to rely on
+    // remote observable rather than RPCs
     submitOperation: (req: ISerializedGraphQLRequest) => new Promise<ISerializedExecutionResult>((resolve, reject) => {
       const request: GraphQLRequest = {
         ...req, query: gql(req.query),
