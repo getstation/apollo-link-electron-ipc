@@ -1,7 +1,7 @@
-export * from './ApolloClientProxier';
+export * from './ElectronRPCGraphQLRequestExecutor';
 export * from './electronRPCLink';
 
 export default {
-  ...require('./ApolloClientProxier'),
+  ...require('./ElectronRPCGraphQLRequestExecutor'),
   ...require('./electronRPCLink'),
 }
