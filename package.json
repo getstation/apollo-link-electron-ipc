@@ -1,6 +1,6 @@
 {
   "name": "apollo-link-electron-ipc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "scripts": {
     "test": "mocha --opts tests/mocha.opts tests/**/*-test.{ts,tsx} && npm run lint && npm run build",
     "lint": "eslint 'src/**/*.{ts,tsx}' 'tests/**/*.{ts,tsx}'",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "apollo-link": "^1.0.7",
-    "electron-simple-rpc": "github:alexstrat/electron-simple-rpc#3bdd5e697a4060658d6e78df366dca03c7a0a6aa",
+    "electron-simple-rpc": "github:alexstrat/electron-simple-rpc#07b2d0812bd96a04ae9f90636373654e01d658ac",
     "graphql": "^0.12.3",
     "graphql-tag": "^2.7.3"
   }
