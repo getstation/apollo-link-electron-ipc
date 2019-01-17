@@ -1,9 +1,11 @@
 import { ApolloLink, Observable, Operation } from 'apollo-link';
 import { ExecutionResult, GraphQLError, print } from 'graphql';
 
-const { rpc, RpcIpcManager } = require('electron-simple-rpc');
+import rxIpc from 'rx-ipc-electron/lib/renderer';
+
 
 import { ISerializedGraphQLRequest, ISerializedExecutionResult } from './types';
+const CHANNEL_NAME = 'apollo-link-electron-ipc/submit-operation';
 
 /**
  * Apollo link that'll transfer the operations to a ApolloClientProxier via Electron IPC.
@@ -11,27 +13,25 @@ import { ISerializedGraphQLRequest, ISerializedExecutionResult } from './types';
 export class ElectronRPCLink extends ApolloLink {
   constructor() {
     super();
-
-    // we need to instanciate that to receive RPCs
-    new RpcIpcManager({}, 'graphql', { ignoreMissingFunctions : true });
   }
 
   public request(operation: Operation) {
     return new Observable((observer: ZenObservable.SubscriptionObserver<ExecutionResult>) => {
-      rpc('graphql', 'submitOperation')({
+      rxIpc.runCommand(CHANNEL_NAME, null, {
         operationName: operation.operationName,
         variables: operation.variables,
         query: print(operation.query),
         context: operation.getContext(),
       } as ISerializedGraphQLRequest)
-        .then((result: ISerializedExecutionResult) => {
-          observer.next({
-            data: result.data,
-            errors: result.errors ? result.errors.map(m => new GraphQLError(m)): undefined
-          });
-          observer.complete();
-        })
-        .catch(observer.error.bind(observer));
+        .subscribe({
+          next: (result: ISerializedExecutionResult) =>
+            observer.next({
+              data: result.data,
+              errors: result.errors ? result.errors.map(m => new GraphQLError(m)): undefined
+            }),
+          error: observer.error.bind(observer),
+          complete: observer.complete.bind(observer),
+        });
     });
   }
 }

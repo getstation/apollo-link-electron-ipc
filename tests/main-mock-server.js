@@ -1,4 +1,4 @@
-const { createElectronRPCGraphQLRequestExecutor } = require('../');
+const { createElectronRPCGraphQLRequestExecutor } = require('../lib/ElectronRPCGraphQLRequestExecutor');
 const { ApolloLink, Observable } = require('apollo-link');
 
 // inspred from

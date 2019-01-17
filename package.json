@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "apollo-link": "^1.2.6",
-    "electron-simple-rpc": "github:alexstrat/electron-simple-rpc#54240bcc5f0454d6e46bc0d3e6c80b219b71939c",
-    "graphql": "^0.12.3"
+    "graphql": "^0.12.3",
+    "rx-ipc-electron": "^0.1.2"
   }
 }
