@@ -21,7 +21,7 @@ import fetch from 'electron-fetch';
 
 // example with HttpLink
 createElectronRPCGraphQLRequestExecutor({
-  new HttpLink({
+  link: new HttpLink({
     uri: 'your-endpoint',
     fetch
   })
