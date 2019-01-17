@@ -2,10 +2,9 @@
   "name": "apollo-link-electron-ipc",
   "version": "1.0.3",
   "scripts": {
-    "test": "mocha --opts tests/mocha.opts tests/**/*-test.{ts,tsx} && npm run lint && npm run build",
     "lint": "eslint 'src/**/*.{ts,tsx}' 'tests/**/*.{ts,tsx}'",
     "format": "prettier --write 'src/**/*.{ts,tsx}' 'tests/**/*.{ts,tsx}'",
-    "build": "rm -rf lib && tsc -p . && rm -fr lib/tests && mv lib/src/** lib/ && rm -fr lib/src",
+    "build": "rm -rf lib && tsc -p .",
     "prepublish": "npm run build"
   },
   "main": "lib/index.js",
@@ -18,9 +17,11 @@
     "@types/chai": "^4.0.4",
     "@types/graphql": "^0.12.3",
     "@types/mocha": "^2.2.40",
-    "@types/node": "^8.0.34",
+    "@types/node": "^8.10.39",
     "apollo-client": "^2.2.1",
     "chai": "^4.1.2",
+    "electron": "^4.0.1",
+    "electron-mocha": "^6.0.4",
     "eslint": "^4.7.2",
     "eslint-config-airbnb": "^16.0.0",
     "eslint-config-prettier": "^2.6.0",
@@ -33,20 +34,19 @@
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.3.0",
     "eslint-plugin-typescript": "^0.8.0",
+    "graphql-tag": "^2.10.0",
     "mocha": "^4.0.1",
     "mocha-clean": "^1.0.0",
     "prettier": "^1.7.0",
     "ts-node": "^3.3.0",
-    "typescript": "^2.5.3",
-    "typescript-eslint-parser": "^8.0.0"
+    "typescript": "^3.2.2"
   },
   "peerDependencies": {
     "apollo-client": "2.*"
   },
   "dependencies": {
-    "apollo-link": "^1.0.7",
+    "apollo-link": "^1.2.6",
     "electron-simple-rpc": "github:alexstrat/electron-simple-rpc#54240bcc5f0454d6e46bc0d3e6c80b219b71939c",
-    "graphql": "^0.12.3",
-    "graphql-tag": "^2.7.3"
+    "graphql": "^0.12.3"
   }
 }

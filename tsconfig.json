@@ -12,14 +12,11 @@
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": true,
     "pretty": true,
+    "skipLibCheck": true,
     "lib": [
       "es6",
       "dom",
       "esnext"
-    ],
-    "typeRoots": [
-      "types",
-      "node_modules/@types"
     ]
   }
 }
