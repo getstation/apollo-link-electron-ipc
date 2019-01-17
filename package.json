@@ -1,6 +1,6 @@
 {
   "name": "apollo-link-electron-ipc",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "In electron, forward GraqhQL operations to the main process",
   "scripts": {
     "test": "npm run build && electron-mocha --renderer ./tests/test --require-main tests/main-mock-server.js",
