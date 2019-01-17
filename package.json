@@ -1,6 +1,7 @@
 {
   "name": "apollo-link-electron-ipc",
   "version": "1.0.3",
+  "description": "In electron, forward GraqhQL operations to the main process",
   "scripts": {
     "test": "npm run build && electron-mocha --renderer ./tests/test --require-main tests/main-mock-server.js",
     "lint": "eslint 'src/**/*.{ts,tsx}' 'tests/**/*.{ts,tsx}'",
@@ -20,7 +21,7 @@
     "@types/mocha": "^2.2.40",
     "@types/node": "^8.10.39",
     "apollo-cache-inmemory": "^1.3.12",
-    "apollo-client": "^2.2.1",
+    "apollo-client": "^2.4.8",
     "chai": "^4.1.2",
     "electron": "^4.0.1",
     "electron-mocha": "^6.0.4",
@@ -40,6 +41,7 @@
     "mocha": "^4.0.1",
     "mocha-clean": "^1.0.0",
     "prettier": "^1.7.0",
+    "rxjs": "^5.5.12",
     "ts-node": "^3.3.0",
     "typescript": "^3.2.2"
   },
@@ -48,7 +50,8 @@
   },
   "dependencies": {
     "apollo-link": "^1.2.6",
-    "electron-simple-rpc": "github:alexstrat/electron-simple-rpc#54240bcc5f0454d6e46bc0d3e6c80b219b71939c",
-    "graphql": "^0.12.3"
+    "graphql": "^0.12.3",
+    "is-electron-renderer": "^2.0.1",
+    "rx-ipc-electron": "^0.1.2"
   }
 }

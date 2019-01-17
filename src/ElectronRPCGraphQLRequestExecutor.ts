@@ -1,28 +1,17 @@
-const { RpcIpcManager } = require('electron-simple-rpc');
 import { ApolloLink, GraphQLRequest, execute } from 'apollo-link';
-import { ExecutionResult, parse } from 'graphql';
+import { parse } from 'graphql';
+import { Observable } from 'rxjs';
+import rxIpc from './rxIpc';
 
 import { ISerializedGraphQLRequest, ISerializedExecutionResult } from './types';
 
+const CHANNEL_NAME = 'apollo-link-electron-ipc/submit-operation';
 
 export const createElectronRPCGraphQLRequestExecutor = ({ link }: { link: ApolloLink }) => {
-  const library = {
-    // TODO: for real-time queries we might need to rely on
-    // remote observable rather than RPCs
-    submitOperation: (req: ISerializedGraphQLRequest) => new Promise<ISerializedExecutionResult>((resolve, reject) => {
-      const request: GraphQLRequest = {
-        ...req, query: parse(req.query),
-      }
-
-      execute(link, request).subscribe({
-        next: (res: ExecutionResult) => resolve({
-          data: res.data,
-          errors: res.errors ? res.errors.map(e => e.message): undefined
-        }),
-        error: (error: Error) => reject(error)
-      });
-    })
-  };
-
-  new RpcIpcManager(library, 'graphql');
+  rxIpc.registerListener(CHANNEL_NAME, (req: ISerializedGraphQLRequest) => {
+    const request: GraphQLRequest = {
+      ...req, query: parse(req.query),
+    }
+    return Observable.from<ISerializedExecutionResult>(execute(link, request));
+  });
 }
