@@ -18,6 +18,7 @@ describe('end-to-end', function () {
     client = new ApolloClient({
       link: link,
       cache: new InMemoryCache(),
+      // see https://github.com/apollographql/apollo-client/issues/4322
       queryDeduplication: false,
     });
   })
