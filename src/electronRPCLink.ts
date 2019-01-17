@@ -16,6 +16,7 @@ export class ElectronRPCLink extends ApolloLink {
 
   public request(operation: Operation) {
     return new Observable((observer: ZenObservable.SubscriptionObserver<ExecutionResult>) => {
+
       rxIpc.runCommand(CHANNEL_NAME, null, {
         operationName: operation.operationName,
         variables: operation.variables,
@@ -23,11 +24,12 @@ export class ElectronRPCLink extends ApolloLink {
         context: operation.getContext(),
       } as ISerializedGraphQLRequest)
         .subscribe({
-          next: (result: ISerializedExecutionResult) =>
+          next: (result: ISerializedExecutionResult) => {
             observer.next({
               data: result.data,
               errors: result.errors ? result.errors.map(m => new GraphQLError(m)): undefined
-            }),
+            })
+          },
           error: observer.error.bind(observer),
           complete: observer.complete.bind(observer),
         });
