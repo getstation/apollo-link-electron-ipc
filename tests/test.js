@@ -7,7 +7,7 @@ describe('end-to-end', function () {
   let client;
 
   before(() => {
-    const { createElectronRPCLink } = require('../lib/electronRPCLink');
+    const { createElectronRPCLink } = require('../');
     client = new ApolloClient({
       link: createElectronRPCLink(),
       cache: new InMemoryCache(),

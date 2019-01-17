@@ -1,7 +1,7 @@
-import rxIpc from 'rx-ipc-electron/lib/main';
 import { ApolloLink, GraphQLRequest, execute } from 'apollo-link';
 import { parse } from 'graphql';
 import { Observable } from 'rxjs';
+import rxIpc from './rxIpc';
 
 
 import { ISerializedGraphQLRequest, ISerializedExecutionResult } from './types';

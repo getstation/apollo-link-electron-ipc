@@ -1,7 +1,6 @@
 import { ApolloLink, Observable, Operation } from 'apollo-link';
 import { ExecutionResult, GraphQLError, print } from 'graphql';
-
-import rxIpc from 'rx-ipc-electron/lib/renderer';
+import rxIpc from './rxIpc';
 
 
 import { ISerializedGraphQLRequest, ISerializedExecutionResult } from './types';

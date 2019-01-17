@@ -49,6 +49,7 @@
   "dependencies": {
     "apollo-link": "^1.2.6",
     "graphql": "^0.12.3",
+    "is-electron-renderer": "^2.0.1",
     "rx-ipc-electron": "^0.1.2"
   }
 }
