@@ -1,7 +1,6 @@
 const { RpcIpcManager } = require('electron-simple-rpc');
-import gql from 'graphql-tag';
 import { ApolloLink, GraphQLRequest, execute } from 'apollo-link';
-import { ExecutionResult } from 'graphql';
+import { ExecutionResult, parse } from 'graphql';
 
 import { ISerializedGraphQLRequest, ISerializedExecutionResult } from './types';
 
@@ -12,7 +11,7 @@ export const createElectronRPCGraphQLRequestExecutor = ({ link }: { link: Apollo
     // remote observable rather than RPCs
     submitOperation: (req: ISerializedGraphQLRequest) => new Promise<ISerializedExecutionResult>((resolve, reject) => {
       const request: GraphQLRequest = {
-        ...req, query: gql(req.query),
+        ...req, query: parse(req.query),
       }
 
       execute(link, request).subscribe({

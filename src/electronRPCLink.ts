@@ -1,8 +1,7 @@
 import { ApolloLink, Observable, Operation } from 'apollo-link';
-import { ExecutionResult, GraphQLError } from 'graphql';
+import { ExecutionResult, GraphQLError, print } from 'graphql';
 
 const { rpc, RpcIpcManager } = require('electron-simple-rpc');
-import { print } from 'graphql/language/printer';
 
 import { ISerializedGraphQLRequest, ISerializedExecutionResult } from './types';
 
