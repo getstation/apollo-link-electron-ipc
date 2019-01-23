@@ -1,5 +1,5 @@
 import { ApolloLink, Observable, Operation } from 'apollo-link';
-import { ExecutionResult, GraphQLError, print } from 'graphql';
+import { ExecutionResult, print } from 'graphql';
 import rxIpc from './rxIpc';
 
 
@@ -27,7 +27,7 @@ export class ElectronRPCLink extends ApolloLink {
           next: (result: ISerializedExecutionResult) => {
             observer.next({
               data: result.data,
-              errors: result.errors ? result.errors.map(m => new GraphQLError(m)): undefined
+              errors: result.errors,
             })
           },
           error: observer.error.bind(observer),

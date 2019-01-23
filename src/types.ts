@@ -1,3 +1,4 @@
+import { GraphQLError } from 'graphql';
 export interface ISerializedGraphQLRequest {
   query: string;
   variables?: object;
@@ -8,5 +9,5 @@ export interface ISerializedGraphQLRequest {
 
 export interface ISerializedExecutionResult {
   data?: object;
-  errors?: string[];
+  errors?: GraphQLError[];
 }
